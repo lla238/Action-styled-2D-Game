@@ -1,0 +1,52 @@
+@startuml
+Game <--> Board
+Game <--> Character
+Game <--> Enemy
+Board ..|> Cell
+Character --> Cell
+Enemy --> Cell
+
+class Game{
+    -board:Board
+    -character:Character
+    -enemies:Enemy
+    +start()
+    +play()
+    +end()
+    +pause()
+}
+
+class Board{
+    -cell:Cell
+    -Startpoint:Cell
+    -exitpoint:Cell
+}
+
+class Character{
+    -position:Cell
+    -score:int
+    -playtime:int
+    +getPoints()
+    +move()
+}
+
+class Enemy{
+    -position:Cell
+    +move()
+    +attack()
+}
+
+class Cell{
+    -xco:int
+    -yco:int
+    -mark:int
+    +isReward():bool
+    +isPunishment():bool
+    +getMark(): int
+    +clearMark()
+    +isBlocked():bool
+    +setCoordinate(xco:int, yco:int)
+    +setMark(mark:int)
+}
+
+@enduml
